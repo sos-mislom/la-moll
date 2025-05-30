@@ -1,0 +1,153 @@
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: #f0f0f0;
+    background-color: #1c1c1c;
+}
+
+#bgVideo {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    filter: brightness(40%) contrast(1.1);
+}
+
+#unmuteBtn, #watchVideoBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ffcc00;
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#watchVideoBtn {
+    top: 60px;
+}
+
+header {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+header .overlay {
+    background: rgba(0,0,0,0.65);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+header h1 {
+    font-size: 56px;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffcc00;
+}
+
+header p {
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+.scroll-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: #ffcc00;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+main {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+section h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #ffcc00;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #ffcc00;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: #ffcc00;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input, button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    font-size: 14px;
+    color: #777;
+}

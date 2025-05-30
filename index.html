@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ла-Молл — Пивная Гонка</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <audio id="beerSound" autoplay>
+        <source src="assets/pop.mp3" type="audio/mpeg">
+    </audio>
+
+    <video id="bgVideo" loop muted>
+        <source src="assets/trailer.mp4" type="video/mp4">
+    </video>
+
+    <button id="unmuteBtn">🔊 Включить звук</button>
+
+    <header>
+        <div class="overlay">
+            <h1>Ла-Молл 2025</h1>
+            <p>Городская командная пивная гонка — на 240 минут.</p>
+            <a href="#about" class="scroll-btn">Подробнее</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>О мероприятии</h2>
+            <p>Ла-Молл — это уникальное состязание, сочетающее скорость, координацию и пиво. За 4 часа команда должна пройти как можно больше кругов, соблюдая маршрут и пивной ритуал.</p>
+        </section>
+
+        <section id="rules">
+            <h2>Правила участия</h2>
+            <ul>
+                <li>⏱ Квалификация: представитель команды выпивает 0.5 л пива на скорость.</li>
+                <li>🏁 Старт: на Академика Шварца 6к1. Первый участник начинает гонку с покупки пива.</li>
+                <li>🧭 Круг засчитывается при прохождении всех контрольных точек и распитии пива между ними.</li>
+                <li>♻ Замены: допускается 1 замена на круг, начиная со второго круга.</li>
+                <li>❌ Запрещено: проливать, сплёвывать, менять маршрут, трогать соперников.</li>
+            </ul>
+            <a href="assets/rules.pdf" class="btn" download>📄 Скачать полный регламент</a>
+        </section>
+
+        <section id="register">
+            <h2>Регистрация команды</h2>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdjV9BSFfJ_hZa8YFMh1mdQnucuOIoBy0tr76H7sodcTeb-KQ/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+        </section>
+    </main>
+
+    <footer>
+        <p>© Ла-Молл 2025. Все права соблюдены. Пей с умом.</p>
+    </footer>
+
+    <script>
+        const video = document.getElementById('bgVideo');
+        const unmuteBtn = document.getElementById('unmuteBtn');
+        const watchVideoBtn = document.getElementById('watchVideoBtn');
+
+        video.play();
+
+        unmuteBtn.addEventListener('click', () => {
+            video.muted = false;
+            video.volume = 0.4;
+            unmuteBtn.style.display = 'none';
+        });
+
+        watchVideoBtn.addEventListener('click', () => {
+            window.open("assets/trailer.mp4", "_blank");
+        });
+    </script>
+</body>
+</html>
