@@ -2,77 +2,210 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Ла-Молл — Пивная Гонка</title>
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ла-Молл 2025 - городская командная пивная гонка на 240 минут." />
+    <meta property="og:title" content="Ла-Молл 2025" />
+    <meta property="og:description" content="Городская командная пивная гонка. 240 минут, маршрут, контрольные точки и командная тактика." />
+    <meta property="og:type" content="website" />
+    <title>Ла-Молл 2025 - Пивная гонка</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-    <audio id="beerSound" autoplay>
-        <source src="assets/pop.mp3" type="audio/mpeg">
+    <audio id="beerSound" preload="auto">
+        <source src="assets/pop.mp3" type="audio/mpeg" />
     </audio>
 
-    <video id="bgVideo" loop muted>
-        <source src="assets/trailer.mp4" type="video/mp4">
+    <video id="bgVideo" autoplay loop muted playsinline poster="" aria-hidden="true">
+        <source src="assets/trailer.mp4" type="video/mp4" />
     </video>
 
-    <button id="unmuteBtn">🔊 Включить звук</button>
+    <div class="video-shade" aria-hidden="true"></div>
 
-    <header>
-        <div class="overlay">
-            <h1>Ла-Молл 2025</h1>
-            <p>Городская командная пивная гонка — 240 минут состязания</p>
-            <a href="#about" class="scroll-btn">Подробнее</a>
+    <nav class="topbar" aria-label="Основная навигация">
+        <a class="brand" href="#top" aria-label="Ла-Молл">
+            <span class="brand-mark">LM</span>
+            <span>Ла-Молл</span>
+        </a>
+        <div class="nav-links">
+            <a href="#format">Формат</a>
+            <a href="#route">Маршрут</a>
+            <a href="#rules">Правила</a>
+            <a href="#register">Регистрация</a>
         </div>
+    </nav>
+
+    <button id="soundBtn" class="sound-btn" type="button" aria-pressed="false">
+        <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+        <span>Звук</span>
+    </button>
+
+    <header id="top" class="hero">
+        <div class="hero-copy">
+            <p class="eyebrow">Командная городская гонка · 2025</p>
+            <h1>Ла-Молл 2025</h1>
+            <p class="lead">240 минут маршрута, контрольных точек, тактики и холодного темпа. Собери команду, пройди квалификацию и забери максимум кругов.</p>
+            <div class="hero-actions">
+                <a class="btn primary" href="#register">
+                    <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+                    Регистрация
+                </a>
+                <a class="btn secondary" href="assets/rules.pdf" download>
+                    <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+                    Регламент
+                </a>
+                <a class="btn ghost" href="assets/trailer.mp4" target="_blank" rel="noreferrer">
+                    <i class="fa-solid fa-play" aria-hidden="true"></i>
+                    Трейлер
+                </a>
+            </div>
+        </div>
+
+        <aside class="race-panel" aria-label="Ключевые параметры гонки">
+            <div>
+                <span>Длительность</span>
+                <strong>240 мин</strong>
+            </div>
+            <div>
+                <span>Команда</span>
+                <strong>1-2 чел.</strong>
+            </div>
+            <div>
+                <span>Старт</span>
+                <strong>Шварца 6к1</strong>
+            </div>
+        </aside>
     </header>
 
     <main>
-        <section id="about">
-            <h2>О мероприятии</h2>
-            <p>Ла-Молл — это уникальное состязание, сочетающее скорость, координацию и пиво. За 4 часа команда должна пройти как можно больше кругов, соблюдая маршрут и пивной ритуал.</p>
+        <section id="format" class="section intro">
+            <div>
+                <p class="eyebrow">Что это</p>
+                <h2>Не забег, не квест, не бархоппинг. Все сразу.</h2>
+            </div>
+            <p>Ла-Молл - это городское соревнование, где команда за 4 часа проходит как можно больше кругов по маршруту. Каждый круг засчитывается только после контрольных точек и выполнения пивного ритуала по регламенту.</p>
         </section>
 
-        <section id="rules">
-            <h2>Правила участия</h2>
-            <ul>
-                <li>⏱ Квалификация: каждая команда (от 1 до 2 человек) выпивает 0.5 л пива на скорость.</li>
-                <li>🏁 Старт: на Академика Шварца 6к1. Первый участник начинает гонку с покупки пива.</li>
-                <li>🧭 Круг засчитывается при прохождении всех контрольных точек и распитии пива между ними.</li>
-                <li>♻ Замены: допускается 1 замена на круг, начиная со второго круга.</li>
-                <li>❌ Запрещено: проливать, сплёвывать, менять маршрут, трогать соперников.</li>
-            </ul>
-            <a href="assets/rules.pdf" class="btn" download>📄 Скачать полный регламент</a>
+        <section class="section stats-grid" aria-label="Структура соревнования">
+            <article>
+                <i class="fa-solid fa-stopwatch" aria-hidden="true"></i>
+                <h3>Квалификация</h3>
+                <p>Команда выпивает 0.5 л на скорость. Результат влияет на стартовый порядок и настрой.</p>
+            </article>
+            <article>
+                <i class="fa-solid fa-route" aria-hidden="true"></i>
+                <h3>Круги</h3>
+                <p>Маршрут фиксированный. Круг засчитывается после всех контрольных точек.</p>
+            </article>
+            <article>
+                <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+                <h3>Тактика</h3>
+                <p>Допускается одна замена на круг, начиная со второго круга. Распределяйте силы заранее.</p>
+            </article>
         </section>
 
-        <section id="register">
-            <h2>Регистрация команды</h2>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdjV9BSFfJ_hZa8YFMh1mdQnucuOIoBy0tr76H7sodcTeb-KQ/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+        <section id="route" class="section split">
+            <div>
+                <p class="eyebrow">Маршрут</p>
+                <h2>Стартовая точка и контроль темпа</h2>
+                <p>Старт проходит на Академика Шварца 6к1. Первый участник начинает гонку с покупки пива, дальше команда движется по маршруту и подтверждает прохождение контрольных точек.</p>
+            </div>
+            <div class="timeline" aria-label="Порядок гонки">
+                <div>
+                    <span>01</span>
+                    <p>Квалификация и фиксация команды</p>
+                </div>
+                <div>
+                    <span>02</span>
+                    <p>Старт с покупки пива</p>
+                </div>
+                <div>
+                    <span>03</span>
+                    <p>Контрольные точки и круги</p>
+                </div>
+                <div>
+                    <span>04</span>
+                    <p>Финиш по окончании 240 минут</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="section rules">
+            <div class="section-head">
+                <p class="eyebrow">Регламент</p>
+                <h2>Коротко о главном</h2>
+            </div>
+            <div class="rules-list">
+                <article>
+                    <h3>Состав</h3>
+                    <p>Команда от 1 до 2 человек. Участники должны быть старше 18 лет.</p>
+                </article>
+                <article>
+                    <h3>Зачет круга</h3>
+                    <p>Нужны все контрольные точки и соблюдение маршрута. Срезы и смена маршрута запрещены.</p>
+                </article>
+                <article>
+                    <h3>Запрещено</h3>
+                    <p>Проливать, сплевывать, мешать соперникам, трогать чужой инвентарь и использовать транспорт.</p>
+                </article>
+                <article>
+                    <h3>Ответственность</h3>
+                    <p>Участвуйте трезво в решениях: без руля, без давления на команду, с уважением к городу и людям рядом.</p>
+                </article>
+            </div>
+            <a href="assets/rules.pdf" class="btn primary" download>
+                <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                Скачать полный регламент
+            </a>
+        </section>
+
+        <section id="register" class="section register">
+            <div class="section-head">
+                <p class="eyebrow">Заявка</p>
+                <h2>Регистрация команды</h2>
+                <p>Заполните форму. Если она не открылась внутри страницы, используйте отдельную кнопку ниже.</p>
+            </div>
+            <div class="form-shell">
+                <iframe title="Регистрация команды Ла-Молл" src="https://docs.google.com/forms/d/e/1FAIpQLSdjV9BSFfJ_hZa8YFMh1mdQnucuOIoBy0tr76H7sodcTeb-KQ/viewform?embedded=true" loading="lazy">Загрузка...</iframe>
+            </div>
+            <a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSdjV9BSFfJ_hZa8YFMh1mdQnucuOIoBy0tr76H7sodcTeb-KQ/viewform" target="_blank" rel="noreferrer">
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                Открыть форму отдельно
+            </a>
         </section>
     </main>
 
-    <footer>
-        <p>© Ла-Молл 2025. Все права соблюдены. Пей с умом.</p>
+    <footer class="footer">
+        <div>
+            <strong>Ла-Молл 2025</strong>
+            <p>Пей с умом. 18+. Не садись за руль после участия.</p>
+        </div>
         <div class="socials">
-            <a href="https://youtube.com/@aveclesens" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://t.me/LaMoll228" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="https://youtube.com/@aveclesens" target="_blank" rel="noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://t.me/LaMoll228" target="_blank" rel="noreferrer" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
         </div>
     </footer>
 
     <script>
-        const video = document.getElementById('bgVideo');
-        const unmuteBtn = document.getElementById('unmuteBtn');
-        const watchVideoBtn = document.getElementById('watchVideoBtn');
+        const video = document.getElementById("bgVideo");
+        const sound = document.getElementById("beerSound");
+        const soundBtn = document.getElementById("soundBtn");
 
-        video.play();
+        video.play().catch(() => {});
 
-        unmuteBtn.addEventListener('click', () => {
-            video.muted = false;
-            video.volume = 0.4;
-            unmuteBtn.style.display = 'none';
-        });
+        soundBtn.addEventListener("click", async () => {
+            const isMuted = video.muted;
+            video.muted = !isMuted;
+            soundBtn.setAttribute("aria-pressed", String(isMuted));
+            soundBtn.classList.toggle("is-on", isMuted);
+            soundBtn.querySelector("span").textContent = isMuted ? "Вкл." : "Звук";
 
-        watchVideoBtn.addEventListener('click', () => {
-            window.open("assets/trailer.mp4", "_blank");
+            if (isMuted) {
+                video.volume = 0.45;
+                sound.currentTime = 0;
+                sound.play().catch(() => {});
+            }
         });
     </script>
 </body>
