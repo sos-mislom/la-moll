@@ -54,10 +54,10 @@
                     <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
                     Регламент
                 </a>
-                <a class="btn ghost" href="assets/trailer.mp4" target="_blank" rel="noreferrer">
+                <button class="btn ghost" id="trailerBtn" type="button">
                     <i class="fa-solid fa-play" aria-hidden="true"></i>
                     Трейлер
-                </a>
+                </button>
             </div>
         </div>
 
@@ -109,10 +109,25 @@
         </div>
     </footer>
 
+    <div class="trailer-modal" id="trailerModal" aria-hidden="true">
+        <div class="trailer-dialog" role="dialog" aria-modal="true" aria-label="Трейлер Ла-Молл">
+            <button class="modal-close" id="modalClose" type="button" aria-label="Закрыть трейлер">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+            <video id="trailerVideo" controls preload="metadata" poster="assets/trailer-poster.jpg">
+                <source src="assets/trailer.mp4" type="video/mp4" />
+            </video>
+        </div>
+    </div>
+
     <script>
         const video = document.getElementById("bgVideo");
         const sound = document.getElementById("beerSound");
         const soundBtn = document.getElementById("soundBtn");
+        const trailerBtn = document.getElementById("trailerBtn");
+        const trailerModal = document.getElementById("trailerModal");
+        const trailerVideo = document.getElementById("trailerVideo");
+        const modalClose = document.getElementById("modalClose");
         const canUseMotion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const hasDataSaver = navigator.connection?.saveData;
 
@@ -134,6 +149,37 @@
                 video.volume = 0.45;
                 sound.currentTime = 0;
                 sound.play().catch(() => {});
+            }
+        });
+
+        const openTrailer = () => {
+            trailerModal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+            video.pause();
+            trailerVideo.currentTime = 0;
+            trailerVideo.play().catch(() => {});
+        };
+
+        const closeTrailer = () => {
+            trailerModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+            trailerVideo.pause();
+            trailerVideo.currentTime = 0;
+            if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !navigator.connection?.saveData) {
+                video.play().catch(() => {});
+            }
+        };
+
+        trailerBtn.addEventListener("click", openTrailer);
+        modalClose.addEventListener("click", closeTrailer);
+        trailerModal.addEventListener("click", (event) => {
+            if (event.target === trailerModal) {
+                closeTrailer();
+            }
+        });
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && trailerModal.getAttribute("aria-hidden") === "false") {
+                closeTrailer();
             }
         });
     </script>
