@@ -35,6 +35,7 @@ a {
     object-fit: cover;
     z-index: -3;
     filter: saturate(0.96) contrast(1.08) brightness(0.68);
+    background: #0e1113 url("assets/trailer-poster.jpg") center / cover no-repeat;
 }
 
 .video-shade {

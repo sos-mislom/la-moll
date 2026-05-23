@@ -17,8 +17,9 @@
         <source src="assets/pop.mp3" type="audio/mpeg" />
     </audio>
 
-    <video id="bgVideo" autoplay loop muted playsinline aria-hidden="true">
-        <source src="assets/trailer.mp4" type="video/mp4" />
+    <video id="bgVideo" autoplay loop muted playsinline preload="none" poster="assets/trailer-poster.jpg" aria-hidden="true">
+        <source src="assets/trailer-bg-480.mp4" type="video/mp4" media="(max-width: 720px)" />
+        <source src="assets/trailer-bg-720.mp4" type="video/mp4" />
     </video>
 
     <div class="video-shade" aria-hidden="true"></div>
@@ -108,8 +109,15 @@
         const video = document.getElementById("bgVideo");
         const sound = document.getElementById("beerSound");
         const soundBtn = document.getElementById("soundBtn");
+        const canUseMotion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const hasDataSaver = navigator.connection?.saveData;
 
-        video.play().catch(() => {});
+        if (canUseMotion && !hasDataSaver) {
+            video.load();
+            video.play().catch(() => {});
+        } else {
+            video.removeAttribute("autoplay");
+        }
 
         soundBtn.addEventListener("click", () => {
             const isMuted = video.muted;
