@@ -1,13 +1,11 @@
 :root {
     --bg: #0e1113;
     --surface: rgba(20, 23, 25, 0.86);
-    --surface-strong: #171b1e;
     --text: #f7f0df;
     --muted: #b8ae9a;
     --line: rgba(247, 240, 223, 0.16);
     --gold: #f2b84b;
     --black: #08090a;
-    --danger: #e1735f;
 }
 
 * {
@@ -149,7 +147,6 @@ a {
 
 h1,
 h2,
-h3,
 p {
     margin-top: 0;
 }
@@ -188,7 +185,6 @@ h1 {
     font: inherit;
     font-weight: 800;
     text-decoration: none;
-    cursor: pointer;
 }
 
 .btn.primary {
@@ -210,12 +206,6 @@ h1 {
 
 .btn:hover {
     transform: translateY(-1px);
-}
-
-.btn:disabled {
-    cursor: wait;
-    opacity: 0.66;
-    transform: none;
 }
 
 .race-panel {
@@ -254,134 +244,72 @@ main {
 .section {
     width: min(1120px, calc(100% - 36px));
     margin: 0 auto;
-    padding: 56px 0;
+    padding: 52px 0;
 }
 
-.brief {
+.route-section {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1px;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--line);
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 24px;
+    align-items: stretch;
 }
 
-.brief article {
-    padding: 22px;
-    background: rgba(20, 23, 25, 0.88);
-}
-
-.brief span {
-    color: var(--gold);
-    font-weight: 900;
-}
-
-.brief h2 {
-    margin: 18px 0 8px;
-    font-size: clamp(22px, 3vw, 34px);
-    line-height: 1;
-}
-
-.brief p {
-    margin: 0;
-    color: var(--muted);
-}
-
-.register {
-    display: grid;
-    grid-template-columns: minmax(260px, 0.75fr) minmax(320px, 1fr);
-    gap: clamp(24px, 7vw, 90px);
-    align-items: start;
-    padding-bottom: 86px;
-}
-
-.register h2 {
-    margin-bottom: 14px;
-    font-size: clamp(36px, 6vw, 74px);
-    line-height: 0.96;
-    letter-spacing: 0;
-}
-
-.register p {
-    color: var(--muted);
-    font-size: 18px;
-    line-height: 1.55;
-}
-
-.team-form {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    padding: 18px;
+.route-copy,
+.route-map {
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface);
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
 }
 
-label {
-    display: grid;
-    gap: 7px;
-    color: var(--muted);
-    font-size: 14px;
-}
-
-.wide {
-    grid-column: 1 / -1;
-}
-
-input,
-select,
-textarea {
-    width: 100%;
-    min-height: 44px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: rgba(8, 9, 10, 0.52);
-    color: var(--text);
-    font: inherit;
-    padding: 10px 12px;
-    outline: none;
-}
-
-textarea {
-    resize: vertical;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: rgba(242, 184, 75, 0.72);
-}
-
-.agree {
+.route-copy {
     display: flex;
-    align-items: flex-start;
-    gap: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px;
 }
 
-.agree input {
-    width: 18px;
-    min-height: 18px;
-    margin-top: 2px;
+.route-copy h2 {
+    margin-bottom: 0;
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1;
+    letter-spacing: 0;
 }
 
-.form-status {
-    grid-column: 1 / -1;
-    min-height: 22px;
-    margin: 0;
-    color: var(--gold);
-}
-
-.telegram-fallback {
-    display: none;
+.text-link {
     color: var(--gold);
     font-weight: 800;
+    text-decoration: none;
 }
 
-.telegram-fallback.is-visible {
-    display: inline-flex;
+.route-map {
+    overflow: hidden;
+    margin: 0;
+    background: #f4f0e8;
+}
+
+.route-map img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 310px;
+    object-fit: cover;
+}
+
+.register {
+    padding-top: 14px;
+    padding-bottom: 86px;
+}
+
+.register iframe {
+    display: block;
+    width: 100%;
+    height: min(760px, 82vh);
+    border: 0;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
 }
 
 .footer {
@@ -421,7 +349,7 @@ textarea:focus {
 
 @media (max-width: 860px) {
     .hero,
-    .register {
+    .route-section {
         grid-template-columns: 1fr;
     }
 
@@ -436,8 +364,8 @@ textarea:focus {
         margin-bottom: 0;
     }
 
-    .brief {
-        grid-template-columns: 1fr;
+    .route-map img {
+        min-height: 240px;
     }
 
     .section {
@@ -467,8 +395,8 @@ textarea:focus {
         width: 100%;
     }
 
-    .team-form {
-        grid-template-columns: 1fr;
+    .register iframe {
+        height: 720px;
     }
 
     .footer {

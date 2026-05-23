@@ -29,8 +29,8 @@
             <span>Ла-Молл</span>
         </a>
         <div class="nav-links">
-            <a href="#brief">Формат</a>
-            <a href="#register">Заявка</a>
+            <a href="#route">Маршрут</a>
+            <a href="#register">Регистрация</a>
         </div>
     </nav>
 
@@ -77,66 +77,19 @@
     </header>
 
     <main>
-        <section id="brief" class="section brief">
-            <article>
-                <span>01</span>
-                <h2>Квалификация</h2>
-                <p>0.5 л на скорость.</p>
-            </article>
-            <article>
-                <span>02</span>
-                <h2>Гонка</h2>
-                <p>Круги по маршруту и контрольные точки.</p>
-            </article>
-            <article>
-                <span>03</span>
-                <h2>Финиш</h2>
-                <p>Побеждает максимум зачтенных кругов.</p>
-            </article>
+        <section id="route" class="section route-section" aria-label="Маршрут гонки">
+            <div class="route-copy">
+                <p class="eyebrow">Маршрут</p>
+                <h2>Круг через 4 точки</h2>
+                <a class="text-link" href="assets/rules.pdf" download>Полный регламент</a>
+            </div>
+            <figure class="route-map">
+                <img src="assets/route-map.png" alt="Карта маршрута Ла-Молл с контрольными точками" />
+            </figure>
         </section>
 
-        <section id="register" class="section register">
-            <div class="register-copy">
-                <p class="eyebrow">Заявка</p>
-                <h2>Команда на старт</h2>
-                <p>Заполните короткую форму. Заявка уйдет организаторам в Telegram.</p>
-            </div>
-
-            <form id="teamForm" class="team-form">
-                <label>
-                    Название команды
-                    <input name="team" type="text" autocomplete="organization" required maxlength="80" />
-                </label>
-                <label>
-                    Капитан
-                    <input name="captain" type="text" autocomplete="name" required maxlength="80" />
-                </label>
-                <label>
-                    Telegram
-                    <input name="telegram" type="text" autocomplete="username" placeholder="@username" required maxlength="80" />
-                </label>
-                <label>
-                    Участников
-                    <select name="members" required>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </label>
-                <label class="wide">
-                    Комментарий
-                    <textarea name="comment" rows="3" maxlength="300" placeholder="Можно оставить пустым"></textarea>
-                </label>
-                <label class="agree wide">
-                    <input name="age" type="checkbox" required />
-                    <span>Нам есть 18, участвуем добровольно и без руля после гонки.</span>
-                </label>
-                <button class="btn primary wide" type="submit">
-                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                    Отправить заявку
-                </button>
-                <p id="formStatus" class="form-status" role="status"></p>
-                <a id="telegramFallback" class="telegram-fallback wide" href="https://t.me/LaMoll228" target="_blank" rel="noreferrer">Написать в Telegram вручную</a>
-            </form>
+        <section id="register" class="section register" aria-label="Регистрация команды">
+            <iframe title="Регистрация команды Ла-Молл" src="https://docs.google.com/forms/d/e/1FAIpQLSdjV9BSFfJ_hZa8YFMh1mdQnucuOIoBy0tr76H7sodcTeb-KQ/viewform?embedded=true" loading="lazy">Загрузка...</iframe>
         </section>
     </main>
 
@@ -155,9 +108,6 @@
         const video = document.getElementById("bgVideo");
         const sound = document.getElementById("beerSound");
         const soundBtn = document.getElementById("soundBtn");
-        const form = document.getElementById("teamForm");
-        const statusEl = document.getElementById("formStatus");
-        const fallbackLink = document.getElementById("telegramFallback");
 
         video.play().catch(() => {});
 
@@ -172,46 +122,6 @@
                 video.volume = 0.45;
                 sound.currentTime = 0;
                 sound.play().catch(() => {});
-            }
-        });
-
-        const buildTelegramText = (data) => [
-            "Новая заявка Ла-Молл",
-            `Команда: ${data.team}`,
-            `Капитан: ${data.captain}`,
-            `Telegram: ${data.telegram}`,
-            `Участников: ${data.members}`,
-            data.comment ? `Комментарий: ${data.comment}` : null
-        ].filter(Boolean).join("\n");
-
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            const submitButton = form.querySelector("button[type='submit']");
-            const data = Object.fromEntries(new FormData(form).entries());
-            const fallbackText = buildTelegramText(data);
-
-            submitButton.disabled = true;
-            statusEl.textContent = "Отправляем...";
-
-            try {
-                const response = await fetch("/api/register", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data)
-                });
-
-                if (!response.ok) {
-                    throw new Error("Telegram endpoint is unavailable");
-                }
-
-                form.reset();
-                statusEl.textContent = "Заявка отправлена. До встречи на старте.";
-            } catch (error) {
-                navigator.clipboard?.writeText(fallbackText).catch(() => {});
-                statusEl.textContent = "Автоотправка недоступна. Текст заявки скопирован, отправьте его в Telegram.";
-                fallbackLink.classList.add("is-visible");
-            } finally {
-                submitButton.disabled = false;
             }
         });
     </script>
